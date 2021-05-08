@@ -52,7 +52,6 @@ main(int argc, char **argv)
 		imlib_blend_image_onto_image(t, 1, 0, 0, w, h, 0, p, w, h);
 		p += h;
 	}
-	/* TEST: large widths */
 	
 	imlib_image_set_format("ff");
 	char file[47];
@@ -87,7 +86,6 @@ main(int argc, char **argv)
 		fprintf(f, "\n");
 		p += h;
 	}
-	/* to do: texture tiles for animation */
 
 	fprintf(f, "%s;\n", file);
 	fclose(f);
