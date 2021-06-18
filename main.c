@@ -17,7 +17,7 @@ main(int argc, char **argv)
 	hs = 0;
 	wm = 0;
 
-	for(i=2; i<argc; i+=2){
+	for(i=2; i<argc; i+=3){
 		t = imlib_load_image(argv[i]);
 		imlib_context_set_image(t);
 		int h = imlib_image_get_height();
@@ -35,7 +35,7 @@ main(int argc, char **argv)
 	imlib_context_set_image(c);
 	imlib_image_set_has_alpha(1);
 
-	for(i=2; i<argc; i+=2){
+	for(i=2; i<argc; i+=3){
 		t = imlib_load_image(argv[i]);
 		imlib_context_set_image(t);
 		int h = imlib_image_get_height();
@@ -56,17 +56,17 @@ main(int argc, char **argv)
 	memmove(cf, argv[1], strlen(argv[1]));
 	strcat(cf, ".ca");
 	f = fopen(cf, "w");	
-	fprintf(f, "0 %d\n", (argc-2)/2);
+	fprintf(f, "0 %d\n", (argc-2)/3);
 
 	p = 0;
 
-	for(i=2; i<argc; i+=2){
+	for(i=2; i<argc; i+=3){
 		t = imlib_load_image(argv[i]);
 		imlib_context_set_image(t);
 		int h = imlib_image_get_height();
 		int w = imlib_image_get_width();
 
-		fprintf(f, "%s: %d: ", argv[i], atoi(argv[i+1]));
+		fprintf(f, "%s: %d: %d: ", argv[i], atoi(argv[i+1]), atoi(argv[i+2]));
 		fprintf(f, "%f %f %f %f %f %f %f %f", 
 			(float)w / (float)(wm) / atoi(argv[i+1]),
 			(float)p / (float)(hs),
@@ -83,3 +83,5 @@ main(int argc, char **argv)
 	fprintf(f, "%s;\n", file);
 	fclose(f);
 }
+/* weird bug puts weird characters at the file names */
+
