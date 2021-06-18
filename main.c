@@ -10,7 +10,6 @@ int hs;
 int wm;
 int i;
 FILE *f;
-float size;
 
 int
 main(int argc, char **argv)
@@ -29,13 +28,7 @@ main(int argc, char **argv)
 		hs += h;
 	}
 
-	if(hs > wm){
-		c = imlib_create_image(hs, hs);
-		size = (float)hs;
-	}else{
-		c = imlib_create_image(wm, wm);	
-		size = (float)wm;
-	}
+	c = imlib_create_image(wm, hs);	
 
 	int p = 0;
 
@@ -75,14 +68,14 @@ main(int argc, char **argv)
 
 		fprintf(f, "%s: %d: ", argv[i], atoi(argv[i+1]));
 		fprintf(f, "%f %f %f %f %f %f %f %f", 
-			(float)w / size / atoi(argv[i+1]),
-			(float)p / size,
-			(float)w / size / atoi(argv[i+1]),
-			(float)(p+h) / size,
+			(float)w / (float)(wm) / atoi(argv[i+1]),
+			(float)p / (float)(hs),
+			(float)w / (float)(wm) / atoi(argv[i+1]),
+			(float)(p+h) / (float)(hs),
 			0.0,
-			(float)(p+h) / size,
+			(float)(p+h) / (float)(hs),
 			0.0,
-			(float)(p) / size);
+			(float)(p) / (float)(hs));
 		fprintf(f, "\n");
 		p += h;
 	}
