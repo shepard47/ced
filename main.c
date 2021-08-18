@@ -95,5 +95,4 @@ main(int argc, char **argv)
 		fprintf(f, "%s;\n", file);
 	fclose(f);
 }
-/* weird bug puts weird characters at the file names */
 
