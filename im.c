@@ -2,7 +2,7 @@
 #include <string.h>
 
 #define STB_IMAGE_IMPLEMENTATION
-#include "stb-image.h"
+#include "stb_image.h"
 
 int chan;
 int bytes;
@@ -21,6 +21,8 @@ main(int argc, char **argv)
 	char *end;
 
 	bytes = 1; // limited to 8-bit
+	if(argc > 2)
+		stbi_set_flip_vertically_on_load(1);
 	data = stbi_load(argv[1], &width, &height, &chan, 0);
 	if(data == 0)
 		return -1;
